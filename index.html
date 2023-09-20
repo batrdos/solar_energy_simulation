@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>Калькулятор солнечной энергии</title>
+        <title>Solar energy calculator</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
         <link rel="stylesheet" type="text/css" href="styles.css">
@@ -15,19 +15,16 @@
     </head>
 
     <body>
-        <h1>Онлайн калькулятор солнечной энергии</h1>
-
- <!--Battery calculation-->
-
-        
+        <h1>Online solar energy calculator</h1>
+ 
 
 
 <!--Solar panel selection-->
         <div class="panel-selection">
             <div style="display: flex; justify-content: space-evenly;">
                 <div>
-                    <p><b>Выберите тип солнечной панели:</b></p>
-                    <form action = "#">
+                    <!-- <p><b>Choose solar panel type:</b></p> -->
+                    <!-- <form action = "#">
                         <label for="chooseSolarPanel">Тип солнечной панели</label>
                         <select name="solarPanels" id="solarPanels">
                             <option value="mono_60">HH-MONO-60W</option>
@@ -37,53 +34,57 @@
                             <option value="poly_300">HH-POLY-300W</option>
                             <option value="anotherPanel">Другая</option>
                         </select>
-                    </form>
+                    </form> -->
             
                     <br>
             
-                    <label for="panelQty">Количество панелей:</label>
+                    <label for="panelQty">Number of panels:</label>
                     <input type="number" id="panelQty" min="0" step="1">
             
-                    <p id="totalAreaPanel">Общая площадь солнечной панелеи:<span id="result-area"></span>м2</p>
+                    <p id="totalAreaPanel">Total area of solar panels:<span id="result-area"></span>m2</p>
     
             
                     <br>
     
                     <!-- <div class="panel-location"> -->
-                    <p><b>Расположение солнечных панелеи:</b></p>
+                    <p><b>Solar panel location:</b></p>
     
-                    <label for="zenith">Угол наклона панелей (0 - горизонтально, 90 - вертикально):</label>
+                    <label for="zenith">Tilt angle (0 - horizontal, 90 - vertical):</label>
                     <input type="number" id="zenith" min="0" max="90" step="1">
                     <br>
                     <br>
     
-                    <label for="azimuth">Азимут панелей (0 - север, 180 - юг):</label>
+                    <label for="azimuth">Azimuth (0 - north, 180 - south):</label>
                     <input type="number" id="azimuth" min="0" max="180" step="1">
                 </div>
+
+    
+ <!--Battery parameters calculation-->
+
                 <div>
                     <div class="battery-setting">
-                        <p><b>Расчет автомной работы от аккумуляторов:</b></p>
-                        <p>Средняя нагрузка, кВт*ч/сутки:</p>
-                        <label for="loadSummer">летом:</label>
+                        <p><b>Battery duration calculation:</b></p>
+                        <p>Average load, kWt/hour:</p>
+                        <label for="loadSummer">summer:</label>
                         <input type="number" id="loadSummer" min="0" step="0.1">
-                        <label for="loadWinter">зимой:</label>
+                        <label for="loadWinter">winter:</label>
                         <input type="number" id="loadWinter" min="0" step="0.1">
                         <br>
                         <br>
-                        <label for="batteryCapacity">Емкость аккумуляторов, Ач:</label>
+                        <label for="batteryCapacity">Battery capacity, Ah:</label>
                         <input type="number" id="batteryCapacity" min="0" step="1">
                         <br>
                         <br>
-                        <label for="batteryVoltage">Напряжение аккумуляторов, В</label>
+                        <label for="batteryVoltage">Battery voltage, V</label>
                         <input type="number" id="batteryVoltage" min="0" step="1">
                         <br>
                         <br>
-                        <label for="dischargeDepth">Предельная глубина, %</label>
+                        <label for="dischargeDepth">Depth of discharge, %</label>
                         <input type="number" id="dischargeDepth" min="0" max="99" step="1"> 
             
-                        <p>Время автономной работы:</p>
-                        <p id="durationSummer">летом <span id="result-summer"></span> дней</p>
-                        <p id="durationWinter">зимой <span id="result-winter"></span> дней</p>
+                        <p>Autonomy work duration:</p>
+                        <p id="durationSummer">summer <span id="result-summer"></span> days</p>
+                        <p id="durationWinter">winter <span id="result-winter"></span> days</p>
             
             
                     </div>
@@ -93,10 +94,10 @@
             <br>
             <br>
 
-            <label for="area">Название местности:</label>
+            <label for="area">Location name:</label>
             <input type="string" id="area" min="0" max="90" step="1">
             <br>
-            <label for="region">Регион (город):</label>
+            <label for="region">Region (city):</label>
             <div style="display: flex; gap:20px">
                 <!-- <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/162/almaty/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Алматы</a><a href="https://yandex.ru/maps/162/almaty/?ll=76.945465%2C43.238293&utm_medium=mapframe&utm_source=maps&z=12" style="color:#eee;font-size:12px;position:absolute;top:14px;">Карта Алматы с улицами и номерами домов — Яндекс Карты</a><iframe src="https://yandex.ru/map-widget/v1/?ll=76.945465%2C43.238293&z=12" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>      -->
                 <div id="map"></div>
@@ -113,36 +114,15 @@
 
         </div>
 
-
-<!--Solar panel location-->    
-
-        <!-- <div class="panel-location">
-            <p><b>Расположение солнечных панелеи:</b></p>
-
-            <label for="zenith">Угол наклона панелей (0 - горизонтально, 90 - вертикально):</label>
-            <input type="number" id="zenith" min="0" max="90" step="1">
-            <br>
-            <label for="azimuth">Азимут панелей (0 - север, 180 - юг):</label>
-            <input type="number" id="azimuth" min="0" max="180" step="1">
-            <br>
-            <label for="azimuth">Регион (город):</label>
-            <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/162/almaty/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Алматы</a><a href="https://yandex.ru/maps/162/almaty/?ll=76.945465%2C43.238293&utm_medium=mapframe&utm_source=maps&z=12" style="color:#eee;font-size:12px;position:absolute;top:14px;">Карта Алматы с улицами и номерами домов — Яндекс Карты</a><iframe src="https://yandex.ru/map-widget/v1/?ll=76.945465%2C43.238293&z=12" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>     
-        </div> -->
-
-
-
-
-
         <br>
         <br>
         <div>
-            <button onclick="fetchSolarData()">Посчитать</button>
+            <button onclick="fetchSolarData()">Calculate</button>
             <span id="errorText"></span>
         </div>
 
         <b><p id="averageEnergyTable"></p></b>
 
-       
         
         <br>
         <br>
@@ -150,11 +130,11 @@
 
         <dialog id="dialog">
            
-            <label>Введите мощность панели:
+            <label>Solar panel capacity:
                 <input name="name" id="dialog-capacity" type="number" />
             </label>
             <br>
-            <button id="jsbutton">Закрыть</button>
+            <button id="jsbutton">Close</button>
           
         </dialog>
 
